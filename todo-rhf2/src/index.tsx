@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './index.css';
 import App from './App';
-import { createStore } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import { todoReducer,initialState } from './reducers/todoReducer';
+import { todoSlice } from './reducers/todoReducer';
 
 
-const store = createStore(todoReducer,initialState);
+const store = configureStore({reducer:todoSlice.reducer});
 
 ReactDOM.render(
   <React.StrictMode>

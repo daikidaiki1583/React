@@ -1,27 +1,6 @@
-export const TodoActionType = {
-    ADD:'ADD',
-    DELETE:'DELETE'
-} as const;
+import { createAction } from '@reduxjs/toolkit';
 
-type ValueOf<T> = T[keyof T];
+const FEATURE = 'todo';
+export const add = createAction<string>(`${FEATURE}/add`);
+export const deleteItem = createAction<number>(`${FEATURE}/delete`);
 
-export type TodoAction = {
-    type: ValueOf<typeof TodoActionType>
-    payload:{
-        task: string
-        id: number
-    } 
-}
-
-export const add = (text: string,idNum: number): TodoAction => ({
-    type: TodoActionType.ADD,
-    payload:{
-        task:text,
-        id:idNum
-    }
-})  
-
-export const deleteItem = (idNum: number) => ({
-    type: TodoActionType.DELETE,
-    payload:{id:idNum}
-}) 

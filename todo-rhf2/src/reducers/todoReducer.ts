@@ -1,47 +1,31 @@
-import { Reducer } from 'redux';
-import { TodoAction, TodoActionType as Type } from '../action';
+import { createSlice,PayloadAction } from '@reduxjs/toolkit';
 
 export type Todo = {
-        task: string,
-        id: number
+        task: string;
+        id: number;
 }
 
 export type TodoState = {
     todos: Todo[];
-    id: number
 }
 
-export const initialState: TodoState = {todos:[],id:0};
+export const initialState: TodoState = {todos:[{task:'',id:0}]};
 
-export const todoReducer: Reducer<TodoState,TodoAction> = (
-    state: TodoState = initialState,
-    action: TodoAction
-): TodoState => {
-    switch (action.type) {
-        case Type.ADD:
-            return {
-                ...state,
-              todos:[
+export const todoSlice = createSlice({
+    name:'todo',
+    initialState,
+    reducers:{
+        add: (state,action: PayloadAction<string>) => ({
+            todos:[
                 ...state.todos,
-                {
-                ...action.payload
-                }
-                ],
-                id: state.id + 1
+            {
+                task:action.payload,
+                id:state.todos[state.todos.length -1].id + 1 
             }
-        case Type.DELETE:
-            // state.todos.filter((t) => t.id !== action.payload.id);
-            // return state                
-            return {
-                todos:[
-                    ...state.todos.filter((t) => t.id !== action.payload.id)
-                ],
-                id: state.id
-            }
-        default:{
-            const _: never = action.type
-            return state
-        }
+            ]
+        }),
+        delete: (state,action: PayloadAction<number>) => ({
+            todos:[...state.todos.filter((t) => t.id !== action.payload)]         
+        }),
     }
-};
-
+});
