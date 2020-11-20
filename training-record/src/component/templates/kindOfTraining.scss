@@ -1,0 +1,15 @@
+.container{
+    padding: 0 10%;
+
+    .main{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap:wrap;
+    }
+}
+
+@media (max-width: 960px){
+    .container{
+        padding: 0 5%;
+    }   
+}
