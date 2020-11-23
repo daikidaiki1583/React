@@ -1,11 +1,21 @@
 import React , { FC }from 'react';
+import { Table } from 'semantic-ui-react';
+import { Record } from '../organisms/training';
+import './recordItem.scss';
 
-const RecordItem: FC = () => {
+type Props = {
+    record: Record
+    deleteRecord: (record: Record) => void;
+}
+
+
+const RecordItem: FC<Props> = ({record,deleteRecord}) => {
     return (
-        <div>
-            <span>2020/11/19</span>
-            <span>30回</span>
-        </div>
+            <Table.Row>
+                <Table.Cell>{record.date}</Table.Cell>
+                <Table.Cell>{record.count}</Table.Cell>
+                <Table.Cell><button onClick={() => deleteRecord(record)}>削除</button></Table.Cell>
+            </Table.Row>
     )
 };
 

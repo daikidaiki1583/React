@@ -2,9 +2,9 @@
     padding: 0 10%;
 
     .main{
-        display: flex;
-        justify-content: space-between;
-        flex-wrap:wrap;
+        display: grid;
+        grid-template-columns: 70%;
+        // flex-wrap:wrap;
     }
 }
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import KindOfTraining from './component/templates/kindOfTraining';
+import TrainingList from './component/templates/trainingList';
 
 function App() {
   return (
     <div className="App">
-      <KindOfTraining/>
+      <TrainingList/>
     </div>
   );
 }
