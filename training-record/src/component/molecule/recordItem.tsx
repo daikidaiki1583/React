@@ -14,7 +14,14 @@ const RecordItem: FC<Props> = ({record,deleteRecord}) => {
             <Table.Row>
                 <Table.Cell>{record.date}</Table.Cell>
                 <Table.Cell>{record.count}</Table.Cell>
-                <Table.Cell><button onClick={() => deleteRecord(record)}>削除</button></Table.Cell>
+                <Table.Cell className='record'>
+                    <div 
+                        className='circle' 
+                        onClick={() => deleteRecord(record)}
+                    >
+                        <i className="fas fa-times"></i>
+                    </div>
+                </Table.Cell>
             </Table.Row>
     )
 };

@@ -48,14 +48,15 @@ const Training: FC<Props> = ({training,today,deleteTraining}) => {
         <>
             <div className='training-item'>
                 <h1>{training.trainingName}</h1>
-                <button className='delete-training' onClick={() => deleteTraining(training)}>削除</button>
+                <div className='delete-training circle' onClick={() => deleteTraining(training)}>
+                    <i className="fas fa-times"></i>
+                </div>
                 
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <input name='date' type="date" defaultValue={today} ref={register({required: true})}/>
-                    <input name='count' type="number" ref={register({required: true})}/>
+                    <input className='date-input' name='date' type="date" defaultValue={today} ref={register({required: true})}/>
+                    <input className='count-input' name='count' type="number" ref={register({required: true})} placeholder='回数'/>
                     <input type="submit"/>
                     {errors.count && <div className='error'>数字を入力してください</div>}
-
                 </form>
 
                 <Table>

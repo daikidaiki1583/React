@@ -7,8 +7,11 @@ import './trainingList.scss';
 
 const TrainingList: FC = () => {
     const { register , handleSubmit , reset} = useForm<TrainingType>();   
+
     const [ trainingList, setList ] = useState<TrainingType[]>([]);
     const [ id, setId ] = useState<number>(trainingList.length + 1);
+    const [ isactive, setActive ] = useState<boolean>(false);
+    
     const today = useMemo(()=> calculateToday(),[]);
 
     const onSubmit = (data: TrainingType) => {
@@ -39,9 +42,17 @@ const TrainingList: FC = () => {
 
     return (
         <div className='container'>
-            <form className='input-form' onSubmit={handleSubmit(onSubmit)}>
-                <input name='trainingName' ref={register} placeholder='training name'/>
-                <input type='submit'/>
+            <h1>筋トレ記録</h1>
+            <p>筋トレ成果を記録して、昨日の自分を超えていこう。</p>
+            <div 
+                className='circle add-item'
+                onClick={() => setActive((active) => !active )}
+            >
+                <i className="fas fa-plus"></i>
+            </div>
+            <form className={`input-form ${isactive ? 'active': ''}`}  onSubmit={handleSubmit(onSubmit)}>
+                <input className='input-training-name' name='trainingName' ref={register} placeholder='筋トレ名'/>
+                <button className='add-training' type='submit'>新しい筋トレメニューを追加</button>
             </form>
             
             <div className='main'>
